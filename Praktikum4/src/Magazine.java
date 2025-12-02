@@ -1,11 +1,10 @@
 public class Magazine extends Book {
-    public Magazine(String title, String author) {
+    private String category;
+
+    public Magazine(String title, String author, String category) {
         super(title, author);
+        this.category = category;
     }
 
-    @Override
-    public void showDetails() {
-        System.out.println("=== Majalah ===");
-        super.showDetails();
-    }
+    public String getCategory() { return category; }
 }

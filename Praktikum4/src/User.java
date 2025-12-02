@@ -1,33 +1,51 @@
 public class User {
     private String name;
 
-    public User(String name) {
+    // Constructor default diubah agar nama defaultnya "Superman" (menyesuaikan output)
+    public User() {
+        this.name = "Dhiya";
+    }
+
+    public User (String name) {
         this.name = name;
     }
 
-    public void viewBookDetails(Book book) {
-        System.out.println("\n[DETAIL BUKU DILIHAT OLEH " + name + "]");
-        book.showDetails();
-        System.out.println("Status : " + (book.isAvailable() ? "Tersedia" : "Sedang dipinjam"));
-    }
+    // Method viewBookDetails menerapkan Polymorphism
+    public void viewBookDetails (Book book) {
+        System.out.println("Judul: "+ book.getTitle());
+        System.out.println("Penulis: "+ book.getAuthor());
+        System.out.println("Tersedia:" + (book.isAvailable() ? "Ya": "Tidak"));
 
-    public void borrowBook(Book book) {
-        System.out.println("\n[PERCOBAAN PEMINJAMAN]");
-        if (book.isAvailable()) {
-            book.setAvailable(false);
-            System.out.println(name + " berhasil meminjam \"" + book.getTitle() + "\"");
-        } else {
-            System.out.println("Maaf, buku \"" + book.getTitle() + "\" sedang dipinjam.");
+        // Polymorphism: Menggunakan instanceof untuk mengecek tipe sub-class
+        if (book instanceof Novel) {
+            Novel novel = (Novel) book;
+            System.out.println("Genre: " + novel.getGenre());
+        } else if (book instanceof Magazine) {
+            Magazine magazine = (Magazine) book;
+            System.out.println("Kategori: " + magazine.getCategory());
+        } else if (book instanceof Textbook) {
+            Textbook textbook = (Textbook) book;
+            System.out.println("Bidang Studi: " + textbook.getStudyField());
         }
     }
-
-    public void returnBook(Book book) {
-        System.out.println("\n[PENGEMBALIAN BUKU]");
-        if (!book.isAvailable()) {
-            book.setAvailable(true);
-            System.out.println(name + " telah mengembalikan buku \"" + book.getTitle() + "\"");
+    
+    // Method untuk meminjam buku
+    public void borrowBook (Book book) {
+        if (book.isAvailable()) {
+            book.borrowBook();
+            System.out.println("Buku \"" + book.getTitle() + "\" berhasil dipinjam oleh " + this.name);
         } else {
-            System.out.println("Buku ini memang sedang tersedia, tidak dapat dikembalikan.");
+            System.out.println("Maaf " + this.name + ", buku \"" + book.getTitle() + "\" sedang tidak tersedia.");
+        }
+    }
+    
+    // Method untuk mengembalikan buku
+    public void returnBook (Book book) {
+        if (!book.isAvailable()) {
+            book.returnBook();
+            System.out.println("Buku \"" + book.getTitle() + "\" berhasil dikembalikan.");
+        } else {
+            System.out.println("Buku \"" + book.getTitle() + "\" sudah tersedia.");
         }
     }
 }

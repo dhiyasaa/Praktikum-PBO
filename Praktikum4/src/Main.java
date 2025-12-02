@@ -1,23 +1,38 @@
 public class Main {
     public static void main(String[] args) {
-        Book novel = new Novel("Laskar Pelangi", "Andrea Hirata");
-        Book magazine = new Magazine("National Geographic", "Tim NG");
-        Book textbook = new Textbook("Pemrograman Java", "Dr. Andi");
+        // Membuat objek buku dari berbagai jenis
+        Book novel = new Novel ("Laskar Pelangi", "Andrea Hirata", "Drama");
+        Book magazine = new Magazine("National Geographic", "Various Authors", "Science");
+        Book textbook = new Textbook ("Pemrograman Java", "Anonimous", "Informatika");
 
-        User user = new User("Dhiya");
+        // Membuat objek user
+        User user = new User();
 
-        System.out.println("=== MENAMPILKAN DETAIL BUKU ===");
-        user.viewBookDetails(novel);
-        user.viewBookDetails(magazine);
-        user.viewBookDetails(textbook);
+        // Menampilkan detail buku menggunakan polymorphism
+        System.out.println("=== Detail Buku ===");
+        user.viewBookDetails (novel);
+        System.out.println();
+        user.viewBookDetails (magazine);
+        System.out.println();
+        user.viewBookDetails (textbook);
+        System.out.println();
 
-        System.out.println("\n=== PROSES PEMINJAMAN & PENGEMBALIAN ===");
-        user.borrowBook(novel);
-        user.borrowBook(novel); // mencoba meminjam yang sudah dipinjam
-        user.returnBook(novel);
-        user.returnBook(novel); // mencoba mengembalikan yang sudah tersedia
-
-        System.out.println("\n=== STATUS AKHIR ===");
-        user.viewBookDetails(novel);
+        // Meminjam buku
+        System.out.println("=== Proses Peminjaman Buku ===");
+        user.borrowBook (novel);
+        user.borrowBook (magazine);
+        
+        // Menampilkan status ketersediaan setelah dipinjam
+        System.out.println("\nStatus Buku Setelah Dipinjam:");
+        System.out.println(novel.getTitle() + " tersedia: " + novel.isAvailable());
+        System.out.println(magazine.getTitle() + " tersedia: " + magazine.isAvailable());
+        
+        // Mengembalikan buku
+        System.out.println("\n=== Proses Pengembalian Buku ===");
+        user.returnBook (novel);
+        
+        // Menampilkan status ketersediaan setelah pengembalian
+        System.out.println("\nStatus Buku Setelah Dikembalikan:");
+        System.out.println(novel.getTitle() + " tersedia: " + novel.isAvailable());
     }
 }

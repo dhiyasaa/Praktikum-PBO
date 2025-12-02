@@ -1,11 +1,10 @@
 public class Textbook extends Book {
-    public Textbook(String title, String author) {
+    private String studyField;
+
+    public Textbook(String title, String author, String studyField) {
         super(title, author);
+        this.studyField = studyField;
     }
 
-    @Override
-    public void showDetails() {
-        System.out.println("=== Buku Pelajaran ===");
-        super.showDetails();
-    }
+    public String getStudyField() { return studyField; }
 }
