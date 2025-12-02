@@ -8,24 +8,24 @@ public class Book {
         this.author = author;
     }
 
-    public String getTitle() {
-        return title;
+    public String getTitle() { 
+        return title; 
     }
 
-    public String getAuthor() {
-        return author;
+    public String getAuthor() { 
+        return author; 
     }
 
-    public boolean isAvailable() {
-        return isAvailable;
+    public boolean isAvailable() { 
+        return isAvailable; 
     }
 
-    public void setAvailable(boolean available) {
-        isAvailable = available;
+    public void setAvailable(boolean available) { 
+        this.isAvailable = available; 
     }
 
     public void showDetails() {
-        System.out.println("Judul: " + title);
-        System.out.println("Penulis: " + author);
+        System.out.println("Judul : " + title);
+        System.out.println("Penulis : " + author);
     }
 }
